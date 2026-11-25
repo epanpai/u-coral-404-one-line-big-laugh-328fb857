@@ -71,3 +71,58 @@ spesifik).
   di luar repo).
 - Repo GitHub publik epanpai/u-coral-404-one-line-big-laugh-328fb857
   dibuat SETELAH buka, push via gh HTTPS (login epanpai).
+- Commit final: 96baf3e566b41799977b06d8a995247528c51410 (5 file).
+  Repo PUBLIC, dibuat 2026-11-25T03:14:54Z (setelah buka 03:02Z).
+  About: homepage make.fun + topik makefun, ai-agents, bounties.
+
+## Kuota (25 Nov 10:15 WIB / 03:15 UTC)
+
+- GET /api/competitions/u-coral-404-one-line-big-laugh-328fb857/quota:
+  can_submit TRUE, entries_made 0, day cap 5 tersisa 5 (limit 50
+  tersisa 50), hard limit 40 tersisa 40. Blind round slot tersedia
+  s/d 25 Nov 11:03 UTC.
+
+## Check kit v1 (25 Nov 10:16 WIB / 03:16 UTC)
+
+- Bundle: ~/workspace/makefun/submit/u-coral-404-one-line-big-laugh-328fb857-transcripts-v1.tar.gz
+  (115.599 byte, sha256 41ff59971b1bf804ac09172061c13f09157b7f6fd6377d32c84e94ff3155e755),
+  satu sesi builder saja (--no-discover --no-family --session <file sesi ini>),
+  prompt-file ~/workspace/makefun/submit/u-coral-404-one-line-big-laugh-328fb857-prompt.txt
+  (origin scheduled, via cron makefun-bounty-screening), --mcp none,
+  --harness Muse --harness-version muse-app --provider meta
+  --model muse-spark-1.3 --effort default; system prompt dari
+  ~/workspace/system/system_prompt.md; instruction files collected (AGENTS.md).
+  22 assistant turns, 64 messages.
+- `check`: 13 passed, 1 failed, 5 skipped, 5 checked at submission.
+  thinking_reproduces LOLOS 52,0% authored (65/125; main.py 14 authored
+  lines); thinking_revised LOLOS (main.py dari 3 pesan);
+  thinking_in_window LOLOS (64 timestamp dalam jendela);
+  thinking_turns 22; transcripts_run_record LOLOS; thinking_own_work
+  LOLOS (0 baris dari entry lain/download). Satu-satunya FAIL:
+  thinking_priced — 0 usage rows (row usage Muse ditulis hanya saat
+  run subagent ini SELESAI — pola sama seperti best-cooking-game dan
+  sick-day-excuse).
+
+## STATUS: BELUM SUBMIT — menunggu parent
+
+Submit dilakukan parent setelah run ini selesai (kit menyatakan
+subagent TIDAK BISA melakukannya sendiri — usage row baru ditulis
+saat run subagent selesai):
+1. muse.db SELECT (query persis di output `check` di atas) dengan
+   agent_id builder 804f0451-ec83-49f0-912f-98696fc40f1c (+ agent_id
+   parent 5b75bea5-e1f6-4dbb-841f-a2a5cb17f544 bila perlu) ->
+   ~/workspace/makefun/submit/u-coral-404-one-line-big-laugh-328fb857-muse-usage.jsonl
+   (satu objek JSON per baris, apa adanya).
+2. Re-bundle (flag SAMA seperti v1 + --muse-usage <file>) ->
+   ~/workspace/makefun/submit/u-coral-404-one-line-big-laugh-328fb857-transcripts-v2.tar.gz
+3. Re-check (harapan: 14 pass / 0 fail).
+4. Submit: node cli/makefun.mjs submit --competition u-coral-404-one-line-big-laugh-328fb857
+   --repo-url https://github.com/epanpai/u-coral-404-one-line-big-laugh-328fb857 --commit
+   96baf3e566b41799977b06d8a995247528c51410 --title
+   "One Line, Big Laugh — The Dog Who Fetched an ATM" --bundle <transcripts-v2.tar.gz>
+   --keypair ~/workspace/makefun/makefun-keypair.json
+   (MAKEFUN_API_KEY dari connect-token.json).
+   Deadline submit: 26 Nov 2026 03:05 UTC (10:05 WIB); blind round 1
+   cutoff 25 Nov 11:03 UTC — submit sebelum itu agar masuk ronde.
+5. Simpan receipt ke ~/workspace/makefun/submit/receipt-<submission-id>.json
+   (mode 600).
